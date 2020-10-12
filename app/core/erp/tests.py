@@ -1,33 +1,11 @@
 from confi.wsgi import *
+from core.erp.models import *
 
-from core.erp.models import Type
+data = ['Leche y derivados', 'Carnes, pescados y huevos', 'Patatas, legumbres, frutos secos',
+        'Verduras y Hortalizas', 'Frutas', 'Cereales y derivados, azúcar y dulces',
+        'Grasas, aceite y mantequilla']
 
-# LISTAR
-
-#query = Type.objects.all()
-
-#print(query)
-
-# INSERTAR
-
-#t = Type()
-#t.name = 'Hola'
-#t.save()
-
-# EDITAR
-
-#try:
- #   t = Type.objects.get(id=1)
-  #  t.name = 'Hola123'
-   # t.save()
-#except Exception as e:
-#  print(e)
-
-# ELIMINAR
-
-#t= Type.objects.get(pk=1)
-#t.delete()
-
-# -----------------------------------------------------------------------------------
-obj = Type.objects.filter(name__contains='pre')
-print(obj)
+for i in data:
+    cat = Category(name=i)
+    cat.save()
+    print('Guardado registro N°{}'.format(cat.id))
