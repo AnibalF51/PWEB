@@ -16,14 +16,18 @@ from core.erp.models import Type
 
 # EDITAR
 
-try:
-    t = Type.objects.get(id=1)
-    t.name = 'Hola123'
-    t.save()
-except Exception as e:
-    print(e)
+#try:
+ #   t = Type.objects.get(id=1)
+  #  t.name = 'Hola123'
+   # t.save()
+#except Exception as e:
+ ↑   print(e)
 
 # ELIMINAR
 
 #t= Type.objects.get(pk=1)
 #t.delete()
+
+# -----------------------------------------------------------------------------------
+obj = Type.objects.filter(name__contains='pre')
+print(obj)
