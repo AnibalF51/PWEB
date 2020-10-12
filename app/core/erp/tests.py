@@ -21,7 +21,7 @@ from core.erp.models import Type
   #  t.name = 'Hola123'
    # t.save()
 #except Exception as e:
- ↑   print(e)
+#  print(e)
 
 # ELIMINAR
 
