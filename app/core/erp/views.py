@@ -1,4 +1,5 @@
 
+from django.views.generic import ListView
 from django.shortcuts import render
 from core.erp.models import Category, Product
 # Create your views here.
@@ -10,9 +11,6 @@ def myfirstview(request):
     }
     return render(request, 'index.html', data)
 
-def mysecondview(request):
-    data = {
-        'name': 'RAIDER',
-        'products': Product.objects.all()
-    }
-    return render(request, 'second.html', data)
+class CategoryListView(ListView):
+    model = Category
+    template_name = 'category/list.html'
