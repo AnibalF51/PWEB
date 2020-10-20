@@ -40,3 +40,11 @@ class CategoryForm(ModelForm):
         except Exception as e:
             data['error'] = str(e)
         return data
+
+    def clean(self):
+        cleaned = super().clean()
+        if len(cleaned['name']) <= 50:
+            raise forms.ValidationError('VALIDACION 666')
+            self.add_error('name', 'Le falta caracteres')
+        print(cleaned)
+        return cleaned
