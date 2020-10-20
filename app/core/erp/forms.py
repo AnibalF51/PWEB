@@ -4,7 +4,6 @@ from core.erp.models import Category
 
 
 class CategoryForm(ModelForm):
-
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # for form in self.visible_fields():
@@ -15,7 +14,6 @@ class CategoryForm(ModelForm):
     class Meta:
         model = Category
         fields = '__all__'
-
         widgets = {
             'name': TextInput(
                 attrs={
@@ -24,7 +22,7 @@ class CategoryForm(ModelForm):
             ),
             'desc': Textarea(
                 attrs={
-                    'placeholder': 'Ingrese la Descripcion',
+                    'placeholder': 'Ingrese un nombre',
                     'rows': 3,
                     'cols': 3
                 }

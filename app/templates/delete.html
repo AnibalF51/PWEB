@@ -1,8 +1,8 @@
-{% extends 'body.html' %}
+{% extends 'layout.html' %}
 {% load widget_tweaks %}
 {% block content %}
     <form method="post" action=".">
-        <div class="card card-default">
+        <div class="card card-primary">
             <div class="card-header">
                 <h3 class="card-title">
                     <i class="fas fa-trash"></i>
@@ -26,13 +26,13 @@
                     </div>
                 {% endif %}
                 <div class="alert alert-danger alert-dismissible">
-                    <h5><i class="icon fas fa-ban">Noticionacion</i></h5>
-                    Estas seguro de eliminar el registro No. {{ object.id }}
+                    <h5><i class="icon fas fa-ban"></i> Notificación!</h5>
+                    ¿Estas seguro de eliminar el registro nro {{ object.id }}?
                 </div>
             </div>
             <div class="card-footer">
                 <button type="submit" class="btn btn-primary btn-flat">
-                    <i class="fas fa-save"></i> Si, Aceptar
+                    <i class="fas fa-save"></i> Si, aceptar
                 </button>
                 <a href="{{ list_url }}" class="btn btn-info btn-flat">
                     <i class="fas fa-times"></i> Cancelar
@@ -41,14 +41,13 @@
         </div>
     </form>
     <script>
-
         $('form').on('submit', function (e) {
             e.preventDefault();
             var parameters = $(this).serializeArray();
             $.ajax({
                 url: window.location.pathname,
                 type: 'POST',
-                data:  parameters,
+                data: parameters,
                 dataType: 'json'
             }).done(function (data) {
                 console.log(data);
