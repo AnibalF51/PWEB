@@ -4,7 +4,8 @@ from datetime import datetime
 from django.forms import model_to_dict
 
 from core.erp.choices import gender_choices
-
+from confi.settings import MEDIA_URL, STATIC_URL
+from core.erp.choices import gender_choices
 
 class Category(models.Model):
     name = models.CharField(max_length=150, verbose_name='Nombre', unique=True)
@@ -31,6 +32,11 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_image(self):
+        if self.image:
+            return '{}{}'.format(MEDIA_URL,self.image)
+        return '{}{}'.format(STATIC_URL, 'img/empty.png')
 
     class Meta:
         verbose_name = 'Producto'
