@@ -44,9 +44,10 @@ class CategoryForm(ModelForm):
     # def clean(self):
     #     cleaned = super().clean()
     #     if len(cleaned['name']) <= 50:
-    #         raise forms.ValidationError('Validacion 666')
+    #         raise forms.ValidationError('Validacion xxx')
     #         # self.add_error('name', 'Le faltan caracteres')
     #     return cleaned
+
 
 class ProductForm(ModelForm):
     def __init__(self, *args, **kwargs):
@@ -64,14 +65,14 @@ class ProductForm(ModelForm):
             ),
         }
 
-    # def save(self, commit=True):
-    #     data = {}
-    #     form = super()
-    #     try:
-    #         if form.is_valid():
-    #             form.save()
-    #         else:
-    #             data['error'] = form.errors
-    #     except Exception as e:
-    #         data['error'] = str(e)
-    #     return data
+    def save(self, commit=True):
+        data = {}
+        form = super()
+        try:
+            if form.is_valid():
+                form.save()
+            else:
+                data['error'] = form.errors
+        except Exception as e:
+            data['error'] = str(e)
+        return data
