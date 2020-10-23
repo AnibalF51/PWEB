@@ -1,5 +1,6 @@
 from django.urls import path
 from core.erp.view.category.views import *
+from core.erp.view.client.views import ClientView
 from core.erp.view.dashboard.views import *
 from core.erp.view.product.views import *
 from core.erp.view.tests.views import TestView
@@ -21,4 +22,6 @@ urlpatterns = [
     path('dashboard/', DashboardView.as_view(), name='dashboard'),
     # test
     path('test/', TestView.as_view(), name='test'),
+    # client
+    path('client/', ClientView.as_view(), name='client'),
 ]
