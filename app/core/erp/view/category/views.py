@@ -79,12 +79,9 @@ class CategoryUpdateView(UpdateView):
     template_name = 'category/create.html'
     success_url = reverse_lazy('erp:category_list')
 
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.object = self.get_object()
-
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
+        self.object = self.get_object()
         return super().dispatch(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):

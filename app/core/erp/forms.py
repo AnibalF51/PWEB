@@ -28,6 +28,7 @@ class CategoryForm(ModelForm):
                 }
             ),
         }
+        exclude = ['user_updated', 'user_creation']
 
     def save(self, commit=True):
         data = {}
@@ -76,6 +77,8 @@ class ProductForm(ModelForm):
         except Exception as e:
             data['error'] = str(e)
         return data
+
+
 class TestForm(Form):
     categories = ModelChoiceField(queryset=Category.objects.all(), widget=Select(attrs={
         'class': 'form-control2',
