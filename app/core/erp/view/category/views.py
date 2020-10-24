@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
@@ -11,8 +11,8 @@ from core.erp.mixins import ValidatePermissionRequiredMixin
 from core.erp.models import Category
 
 
-class CategoryListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
-    permission_required = ('erp.view_category', 'erp.change_category')
+class CategoryListView(LoginRequiredMixin, ValidatePermissionRequiredMixin, ListView):
+    permission_required = 'erp.change_category'
     model = Category
     template_name = 'category/list.html'
 
@@ -44,7 +44,9 @@ class CategoryListView(LoginRequiredMixin, PermissionRequiredMixin, ListView):
         return context
 
 
-class CategoryCreateView(CreateView):
+class CategoryCreateView(ValidatePermissionRequiredMixin, CreateView):
+    permission_required = 'erp.view_category'
+    url_redirect = reverse_lazy('erp:category_list')
     model = Category
     form_class = CategoryForm
     template_name = 'category/create.html'
