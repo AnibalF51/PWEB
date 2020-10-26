@@ -8,6 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 from core.erp.forms import SaleForm
 from core.erp.mixins import ValidatePermissionRequiredMixin
 from django.views.generic import CreateView, ListView, DeleteView
+
 from core.erp.models import Sale, Product, DetSale
 
 
@@ -27,6 +28,10 @@ class SaleListView(LoginRequiredMixin, ValidatePermissionRequiredMixin, ListView
             if action == 'searchdata':
                 data = []
                 for i in Sale.objects.all():
+                    data.append(i.toJSON())
+            elif action == 'search_details_prod':
+                data = []
+                for i in DetSale.objects.filter(sale_id=request.POST['id']):
                     data.append(i.toJSON())
             else:
                 data['error'] = 'Ha ocurrido un error'
