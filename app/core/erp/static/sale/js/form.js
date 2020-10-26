@@ -202,5 +202,7 @@ $(function () {
         });
     });
 
+    // Esto se puso aqui para que funcione bien el editar y calcule bien los valores del iva. // sino tomaría el valor del iva de la base debe
+    // escoger el que pusimos al inicializarlo.
     vents.list();
 });

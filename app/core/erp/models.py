@@ -1,6 +1,8 @@
 from datetime import datetime
+
 from django.db import models
 from django.forms import model_to_dict
+
 from confi.settings import MEDIA_URL, STATIC_URL
 from core.erp.choices import gender_choices
 from core.models import BaseModel
