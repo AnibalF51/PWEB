@@ -6,6 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 from core.erp.forms import SaleForm
 from core.erp.mixins import ValidatePermissionRequiredMixin
 from django.views.generic import CreateView
+
 from core.erp.models import Sale, Product
 
 
