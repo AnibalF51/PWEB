@@ -1,16 +1,13 @@
 import json
-
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db import transaction
 from django.http import JsonResponse
 from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
-
 from core.erp.forms import SaleForm
 from core.erp.mixins import ValidatePermissionRequiredMixin
 from django.views.generic import CreateView, ListView, DeleteView, UpdateView
-
 from core.erp.models import Sale, Product, DetSale
 
 
@@ -71,7 +68,8 @@ class SaleCreateView(LoginRequiredMixin, ValidatePermissionRequiredMixin, Create
                 prods = Product.objects.filter(name__icontains=request.POST['term'])[0:10]
                 for i in prods:
                     item = i.toJSON()
-                    item['value'] = i.name
+                    #item['value'] = i.name
+                    item['text'] = i.name
                     data.append(item)
             elif action == 'add':
                 with transaction.atomic():
@@ -133,7 +131,7 @@ class SaleUpdateView(LoginRequiredMixin, ValidatePermissionRequiredMixin, Update
             elif action == 'edit':
                 with transaction.atomic():
                     vents = json.loads(request.POST['vents'])
-                    # sale = Sale.objects.get(pk=self.get_object().id)
+                    #sale = Sale.objects.get(pk=self.get_object().id)
                     sale = self.get_object()
                     sale.date_joined = vents['date_joined']
                     sale.cli_id = vents['cli']
