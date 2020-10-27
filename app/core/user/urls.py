@@ -6,4 +6,5 @@ app_name = 'user'
 urlpatterns = [
     # user
     path('list/', UserListView.as_view(), name='user_list'),
+    path('add/', UserCreateView.as_view(), name='user_create'),
 ]

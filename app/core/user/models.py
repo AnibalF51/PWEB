@@ -1,7 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.forms import model_to_dict
-
 from confi.settings import MEDIA_URL, STATIC_URL
 
 
@@ -20,3 +19,8 @@ class User(AbstractUser):
         item['date_joined'] = self.date_joined.strftime('%Y-%m-%d')
         item['image'] = self.get_image()
         return item
+
+    def save(self, *args, **kwargs):
+        if self.pk is None:
+            self.set_password(self.password)
+        super().save(*args, **kwargs)
