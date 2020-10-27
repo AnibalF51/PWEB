@@ -3,7 +3,6 @@ from django.http import JsonResponse
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import TemplateView
-
 from core.erp.forms import TestForm
 from core.erp.models import Product, Category
 
@@ -28,7 +27,7 @@ class TestView(TemplateView):
                 data = []
                 for i in Category.objects.filter(name__icontains=request.POST['term'])[0:10]:
                     item = i.toJSON()
-                    item['value'] = i.name
+                    item['text'] = i.name
                     data.append(item)
             else:
                 data['error'] = 'Ha ocurrido un error'
