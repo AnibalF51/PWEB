@@ -1,5 +1,4 @@
 from django.forms import *
-
 from core.user.models import User
 
 
@@ -59,7 +58,7 @@ class UserForm(ModelForm):
                     if user.password != pwd:
                         u.set_password(pwd)
                 u.save()
-
+                u.groups.clear()
                 for g in self.cleaned_data['groups']:
                     u.groups.add(g)
             else:
