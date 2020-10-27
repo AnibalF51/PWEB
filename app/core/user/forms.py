@@ -1,5 +1,4 @@
 from django.forms import *
-
 from core.user.models import User
 
 
@@ -10,7 +9,7 @@ class UserForm(ModelForm):
 
     class Meta:
         model = User
-        fields = 'first_name', 'last_name', 'email', 'username', 'password', 'image'
+        fields = 'first_name', 'last_name', 'email', 'username', 'password', 'image',
         widgets = {
             'first_name': TextInput(
                 attrs={
@@ -32,11 +31,11 @@ class UserForm(ModelForm):
                     'placeholder': 'Ingrese su username',
                 }
             ),
-            'password': PasswordInput(
-                attrs={
-                    'placeholder': 'Ingrese su password',
-                }
-            ),
+            'password': PasswordInput(render_value=True,
+                                      attrs={
+                                          'placeholder': 'Ingrese su password',
+                                      }
+                                      ),
         }
         exclude = ['groups', 'user_permissions', 'last_login', 'date_joined', 'is_superuser', 'is_active', 'is_staff']
 
