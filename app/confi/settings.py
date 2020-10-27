@@ -43,9 +43,10 @@ INSTALLED_APPS = [
     'widget_tweaks',
     # Apps
     'core.erp',
-    'core.login',
     'core.homepage',
+    'core.login',
     'core.user',
+    'core.reports',
 
 ]
 

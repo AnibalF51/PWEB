@@ -1,6 +1,6 @@
 from django.urls import path
 from core.erp.view.category.views import *
-from core.erp.view.client.views import ClientListView, ClientCreateView, ClientUpdateView, ClientDeleteView
+from core.erp.view.client.views import *
 from core.erp.view.dashboard.views import *
 from core.erp.view.product.views import *
 from core.erp.view.sale.views import *
